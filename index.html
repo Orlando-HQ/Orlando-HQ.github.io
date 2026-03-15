@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Portfolio - Orlando</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="CardDemo/card-demo.css">
+    <link rel="stylesheet" href="CardDemo/card-demo-cosmos-holo.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="wip-banner" class="wip-banner">
+        <p>This site is primarily designed for desktop. Try it on your PC!</p>
+        <button class="close-btn" aria-label="Close banner">&times;</button>
+    </div>
+    <!-- Header banner: background video (muted loop), dark overlay, and main title -->
+    <header class="banner">
+        <video muted loop playsinline preload="auto" id="background-video">
+            <source src="Media/Videos/Animated_Background.webm" type="video/webm">
+        </video>
+        <div class="overlay"></div>
+        <div class="banner-content">
+            <h1><span class="banner-name">Project Portfolio</span><span class="banner-sep"> - </span><span class="banner-projects">Orlando</span></h1>
+        </div>
+    </header>
+    <main class="content">
+        <!-- Presentation: CV summary and profile (flex layout; profile stacks above CV on mobile) -->
+        <section class="presentation">
+            <div class="cv-summary">
+                <h2>CV Summary</h2>
+                <p>
+                    Alessandro Orlando is currently enrolled in the Master’s program in <em>AI & Robotics</em> at <em>Sapienza University of Rome</em>. He holds a Bachelor’s degree in <em>Mathematical Sciences for Artificial Intelligence</em> from the same university (below is the poster of the thesis, presented at the <em>BrainJuice</em> event).<br>He has contributed to the <em>TEDxSapienzaU</em> team for the <em>Back to Zero (2023)</em> edition as speaker curator and participated in competitions including <em>CyberChallengeIT (2024)</em> and the american <em>CanSat (2026)</em>, serving in the ground software subsystem of the <em>Sapienza Space Team (SASA)</em> for the latter. Additionally, he has taken part in several hackathons, such as <em>QHack</em>, and others organized by <em>g.tec medical engineering</em>, <em>Boolean</em>, <em>Lazio Innova</em>, and <em>Talent Garden</em>.
+                </p>
+            </div>
+            <div class="profile">
+                <img src="Media/Selfie.jpg" alt="Alessandro Orlando" class="profile-pic" loading="lazy">
+                <div class="social-links">
+                    <a href="https://it.linkedin.com/in/alessandro-orlando-4a5282228" target="_blank" class="linkedin-logo">
+                        <img src="Media/Logo/LinkedIn.webp" alt="LinkedIn" loading="lazy">
+                    </a>
+                    <a href="https://learn.microsoft.com/it-it/users/alessandroorlando-1299/?trk=public_profile_see-credential" target="_blank">
+                        <img src="Media/Logo/Microsoft.png" alt="Microsoft" loading="lazy">
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Thesis section: poster image displayed in a light-gray band -->
+        <section class="thesis-section">
+            <div class="thesis-figure">
+                <div class="thesis-card">
+                    <img src="Media/Thesis.jpg" alt="Thesis image" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        
+        <!-- Project example: TEDx entry. Project sections use `media-left` / `media-right` to control media/description order on desktop. -->
+        <section class="project-section media-right">
+            <div class="project-description cv-summary animate-left">
+                <h2>TEDx | BackToZero</h2>
+                    <p>
+                        Personally, I devoted myself to Marcello Ienca and his work 
+                        <em>Human-AI Symbiosis and the Quest for Neurorights</em>: he examines the ethical challenges of neural interfaces,, arguing they must enhance, not degrade, human beings. He calls for legal and moral protections for mental privacy and other "neurorights" to prevent manipulation and exploitation as brain–AI integration advances. The talk frames the choice between parasitic control and mutualistic symbiosis and outlines principles for pursuing a human-centered, ethical future for neurotechnology.
+                    </p>
+            </div>
+            <div class="project-video-container animate-right">
+                <img src="Media/TED_Playlist.jpg" alt="TEDx SapienzaU event" class="project-thumb" loading="lazy">
+                <a href="https://www.youtube.com/playlist?list=PL4-t_gJBexTBDgARWnLB3dmC0g1_OcxFc" target="_blank" class="youtube-link">
+                    <img src="Media/Logo/YouTube.png" alt="Play on YouTube" loading="lazy">
+                </a>
+            </div>
+        </section>
+        <section class="project-section media-left">
+            <div class="project-description cv-summary animate-right">
+                <h2>PokéStudio</h2>
+                <p>
+                    PokéStudio is an idea that came to me inspired by the mobile game <em>Pokémon Pocket</em>: what if a software with similar graphics and functionality were designed for PC and adapted to the ENTIRE dataset of <em>Pokémon</em> franchise cards, both physical and digital? For copyright reasons, it runs entirely locally (and I haven’t published it yet).
+                </p>
+            </div>
+            <div class="project-video-container animate-left">
+                <video controls loop preload="metadata">
+                    <source src="Media/Videos/PokeStudio.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </section>
+        <!-- Route39 project: shows a thumbnail with a slider to switch images; clicking opens lightbox modal -->
+        <section class="project-section route39 media-right">
+            <div class="project-description cv-summary">
+                <h2>Route39 | Rome</h2>
+                <p>
+                    Have you ever wondered how many house numbers "39" exist in Rome? Thanks to some cadastral records, a Python program, and an algorithm to solve the <em>Traveling Salesman Problem</em>, here is the result (use the slider to change the image). The idea was to plan a trip to physically photograph every house number in the city, but after taking about fifty photos, I decided to "call it a day."
+                </p>
+            </div>
+            <div class="project-video-container">
+                <div class="slider-container">
+                    <img id="route39-img" src="Media/Route39/Address.png" alt="Route 39 - Address" class="route39-img" loading="lazy">
+                    <input type="range" id="route39-range" min="0" max="2" value="0" aria-label="Change Route 39 image">
+                </div>
+            </div>
+        </section>
+        <!-- Ambiens VR: video project section (media left on desktop) -->
+        <section class="project-section ambiens media-left">
+            <div class="project-description cv-summary animate-right">
+                <h2>Ambiens VR | DD.Share</h2>
+                <p>
+                    This is not my project, but it was fun to participate. At <em>Maker Faire Rome EU</em>, Ambiens showcased an innovative photogrammetry rig capable of capturing physical presence and turning it into a 3D model in real time. Anyway, this is my 3D model, which is now dancing after I applied a silly dance animation to it in Blender.
+                </p>
+            </div>
+            <div class="project-video-container animate-left">
+                <video class="amb-video" controls preload="metadata">
+                    <source src="Media/Videos/3D_Dancing.mp4" type="video/mp4">
+                    Your browser does not support the video tag. Replace the source with the video file you will provide.
+                </video>
+            </div>
+        </section>
+        <!-- Mandelbrot Cabbage: small media thumbnail used as project visual -->
+        <section class="project-section media-right mandelbrot">
+            <div class="project-description cv-summary">
+                <h2>Mandelbrot Cabbage</h2>
+                <p>
+                    Romanesco cauliflower has a striking fractal structure: its surface is made of many small conical florets arranged in precise logarithmic spirals. Each cone is composed of smaller cones with the same shape, creating a repeating self-similar pattern at different scales. This natural geometric organization gives the vegetable its highly regular, almost mathematical appearance. Yes, I dissected a cauliflower. So what?
+                </p>
+            </div>
+            <div class="project-video-container animate-right">
+                <img src="Media/FractalCabbage.jpg" alt="Mandelbrot Cabbage" class="project-thumb" loading="lazy">
+            </div>
+        </section>
+        <!-- Placeholder projects: follow same structure as other projects (description + media). Placeholders use a black rectangle with three question marks. -->
+        <section class="project-section media-left placeholder">
+            <div class="project-description cv-summary">
+                <h2>SimNet</h2>
+                <p>Inspired by J. Conway's <em>The Game of Life</em>, I attempted to devise mathematical and algorithmic rules that simulate the evolution of a complex system starting from simple rules. Each dot on the plane represents an individual, each color or shape indicates a state (ex: survival), and each line represents a relationship (ex: inheritance). In the program, built with PyGame, there is also a "Migration" option, allowing a certain population cluster to migrate to other areas of the plane if specific conditions are met.</p>
+            </div>
+            <div class="project-video-container animate-left">
+                <video class="project-thumb" controls playsinline preload="metadata">
+                    <source src="Media/Videos/SimNet.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </section>
+
+        <section class="project-section media-right placeholder">
+            <div class="project-description cv-summary">
+                <h2>Escape Room</h2>
+                <p>Using the <em>Unity</em>-like editor of the video game <em>Escape Simulator 2</em>, I created several escape rooms in a 3D environment. The first one I built is called <em>Dracula's Secret</em> and is available on the Steam Workshop (800+ players!). This is a preview of two rooms: obviously, if you want to solve them, it’s up to you to play!</p>
+            </div>
+            <div class="project-video-container animate-right">
+                <video class="project-thumb" controls playsinline preload="metadata">
+                    <source src="Media/Videos/EscapeRoom.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </section>
+
+        <section class="project-section media-left placeholder">
+            <div class="project-description cv-summary">
+                <h2>ObjaverseXL Picker</h2>
+                <p><em>ObjaverseXL</em> is a massive dataset containing over 10 million 3D models and, understandably, weighs more than 15 terabytes. I have therefore created an optimized script where you only need to type the kind of object you want, and in a short time it provides a list (with previews and metadata) of all compatible files in the dataset. From this simple list, you just select the desired file(s) and <em>voilà</em>—only a few MB are needed to get what you wanted on your PC. Of course, you can’t train a neural network with it, but if your goal is to use a few 3D models without spending hours browsing online, it’s more than sufficient.</p>
+            </div>
+            <div class="project-video-container animate-left">
+                <img src="Media/ObjaverseXL.webp" alt="ObjaverseXL" class="project-thumb" loading="lazy">
+            </div>
+        </section>
+
+        <!-- Divider: upcoming / work-in-progress projects -->
+        <div class="coming-soon-wrapper">
+            <h2 class="coming-soon" data-text="Coming Soon...">Coming Soon<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></h2>
+        </div>
+        <section class="project-section media-right physarum">
+            <div class="project-description cv-summary">
+                <h2>Physarum Polycephalum</h2>
+                <p>
+                    It is a single-celled slime mold (<em>blob</em>) known for its ability to form complex networks while foraging. It has been used in unconventional computing experiments, such as solving mazes and optimizing transport networks. Researchers have also explored it for bio-inspired algorithms and adaptive network design.
+                    I bought a specimen through <em>Protoplasmic Flow</em> by the artist Jenna Sutela… I’ll have to do something with it, one day.
+                </p>
+            </div>
+            <div class="project-video-container animate-right">
+                <img src="Media/PhysarumPolycephalum.jpg" alt="Physarum Polycephalum" class="project-thumb" loading="lazy">
+            </div>
+        </section>
+
+        <section class="project-section media-left placeholder gyro">
+            <div class="project-description cv-summary">
+                <h2>Magnetic Gyrosphere</h2>
+                <p>AI-generated image of the prototype. I’m not sure, I have some ideas in mind, but I’m waiting for inspiration… and no, <em>Tesla</em> didn’t pay me to sponsor them.</p>
+            </div>
+            <div class="project-video-container animate-left">
+                <img src="Media/GyroSphere.png" alt="Magnetic Gyrosphere" class="project-thumb" loading="lazy">
+            </div>
+        </section>
+
+        <!-- CineBrain | fMRI removed per request -->
+
+        <!-- Divider: SECRET section -->
+        <div class="coming-soon-wrapper">
+            <h2 class="coming-soon glitch" data-text="SECRET">SECRET</h2>
+        </div>
+        <section class="project-section secret-section">
+            <div class="secret-group-left">
+                <div class="project-video-container secret-placeholder">
+                    <div class="placeholder-media centered-media" aria-hidden="true">
+                        <div class="marks"><span>?</span><span class="center">?</span><span>?</span></div>
+                    </div>
+                </div>
+                <div class="secret-project-group">
+                    <p class="secret-project-text">Secret Project</p>
+                    <img src="Media/Arrow.png" alt="Arrow" class="secret-arrow">
+                </div>
+            </div>
+            <div class="secret-group-right">
+                <div class="card-demo-wrapper">
+                    <div class="card" id="card-demo" tabindex="0" aria-label="Demo card" data-rarity="rare holo cosmos">
+                        <div class="card__inner">
+                            <div class="card__face card__face--front" style="background-image: url('CardDemo/IMGs/Regigigas.jpg')" aria-hidden="true"></div>
+                            <div class="card__face card__face--back" style="background-image: url('CardDemo/IMGs/Card_Back.jpg')" aria-hidden="true"></div>
+                            <div class="card__shine" aria-hidden="true"></div>
+                            <div class="card__glare" aria-hidden="true"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-demo-group">
+                    <img src="Media/Arrow.png" alt="Arrow" class="card-arrow">
+                    <p class="card-demo-text">PokéStudio<br>Card Demo<br><span class="card-demo-sub">(click &amp; hover!)</span></p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="site-footer">
+        <p>This website is (permanently) a Work in Progress. Last update: March 2026.</p>
+    </footer>
+    <!-- Inline script: controls video autoplay/pause, WIP banner, animations, Route39 slider and modal -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const video = document.getElementById('background-video');
+            if (video && 'IntersectionObserver' in window) {
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => entry.isIntersecting ? video.play() : video.pause());
+                });
+                observer.observe(video);
+            }
+
+            const closeBtn = document.querySelector('.wip-banner .close-btn');
+            if (closeBtn) closeBtn.addEventListener('click', () => {
+                document.getElementById('wip-banner').style.display = 'none';
+            });
+
+            // Animate-on-scroll for lateral appearance
+            if ('IntersectionObserver' in window) {
+                const animated = document.querySelectorAll('.animate-left, .animate-right');
+                const animObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) entry.target.classList.add('in-view');
+                        else entry.target.classList.remove('in-view');
+                    });
+                }, { threshold: 0.12 });
+
+                animated.forEach(el => animObserver.observe(el));
+            } else {
+                // Fallback: make elements visible
+                document.querySelectorAll('.animate-left, .animate-right').forEach(el => el.classList.add('in-view'));
+            }
+
+            // Route39 slider handling + lightbox modal
+            const routeImgs = [
+                'Media/Route39/Address.png',
+                'Media/Route39/Colors.png',
+                'Media/Route39/Path.png'
+            ];
+            const routeImgEl = document.getElementById('route39-img');
+            const routeRange = document.getElementById('route39-range');
+
+            // Modal elements (created in DOM below)
+            const modal = document.getElementById('route39-modal');
+            const modalImg = document.getElementById('route39-modal-img');
+            const modalRange = document.getElementById('route39-modal-range');
+
+            function setRouteIndex(i) {
+                const idx = Number(i) || 0;
+                const src = routeImgs[idx] || routeImgs[0];
+                if (routeImgEl) routeImgEl.src = src;
+                if (modalImg) modalImg.src = src;
+                if (routeRange) routeRange.value = idx;
+                if (modalRange) modalRange.value = idx;
+            }
+
+            if (routeImgEl && routeRange) {
+                routeRange.addEventListener('input', (e) => setRouteIndex(e.target.value));
+                // open modal on thumbnail click
+                routeImgEl.addEventListener('click', () => {
+                    if (!modal) return;
+                    modal.classList.add('open');
+                    modal.setAttribute('aria-hidden', 'false');
+                    // sync modal image index
+                    const i = Number(routeRange.value) || 0;
+                    setRouteIndex(i);
+                    // focus for accessibility
+                    const closeBtn = modal.querySelector('.modal-close');
+                    if (closeBtn) closeBtn.focus();
+                });
+            }
+
+            // Modal range controls and close behavior
+            if (modal) {
+                // clicking backdrop or close button closes modal
+                modal.addEventListener('click', (ev) => {
+                    if (ev.target === modal || ev.target.classList.contains('modal-backdrop')) {
+                        modal.classList.remove('open');
+                        modal.setAttribute('aria-hidden', 'true');
+                    }
+                });
+                const closeBtn = modal.querySelector('.modal-close');
+                if (closeBtn) closeBtn.addEventListener('click', () => {
+                    modal.classList.remove('open');
+                    modal.setAttribute('aria-hidden', 'true');
+                });
+
+                if (modalRange) {
+                    modalRange.addEventListener('input', (e) => setRouteIndex(e.target.value));
+                }
+
+                // Escape key to close
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && modal.classList.contains('open')) {
+                        modal.classList.remove('open');
+                        modal.setAttribute('aria-hidden', 'true');
+                    }
+                });
+            }
+        });
+
+        
+    </script>
+    <script src="CardDemo/card-demo.js" defer></script>
+        <!-- Route39 modal (lightbox): hidden by default, opened by clicking Route39 thumbnail -->
+        <div id="route39-modal" class="modal" aria-hidden="true">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content" role="dialog" aria-modal="true" aria-label="Route 39 images">
+                <button class="modal-close" aria-label="Close">&times;</button>
+                <img id="route39-modal-img" src="Media/Route39/Address.png" alt="Route 39" loading="lazy">
+                <input type="range" id="route39-modal-range" min="0" max="2" value="0" aria-label="Change Route 39 image">
+            </div>
+        </div>
+</body>
+</html>

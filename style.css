@@ -1,0 +1,1056 @@
+/* Base: reset margins and set system font stack for consistent typography */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    height: 100%;
+}
+
+/* Use border-box everywhere to make widths/paddings predictable */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Prevent small horizontal overflows on rotated/mobile viewports */
+html, body {
+    overflow-x: hidden;
+}
+
+/* Ensure media scale down responsively */
+img, picture, video, svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+:root {
+    /* Layout variables: adjustable gap used to space page sections uniformly */
+    --section-gap: 4rem;
+}
+
+.banner {
+    /* Banner: hero area containing background video and overlay */
+    position: relative;
+    height: 42vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+#background-video {
+    /* Background video: centered and cover-fit to fill the banner */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+.overlay {
+    /* Semi-opaque overlay to increase text contrast on top of the video */
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+.banner-content {
+    /* Banner content (title): positioned above the overlay */
+    position: relative;
+    z-index: 1;
+}
+
+/* Section divider title for upcoming/WIP projects: matches page title font */
+.coming-soon {
+    font-family: 'Pacifico', cursive;
+    text-align: center;
+    /* Larger, bold title to separate finished projects from WIP */
+    font-size: clamp(2rem, 5vw, 4rem);
+    margin: calc(var(--section-gap) / 2) 0;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+    /* Base clipped gradient for crisp text */
+    background: linear-gradient(90deg, #7B2CFF 0%, #5A4BFF 50%, #3478FF 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Ensure any animated characters inside the Coming Soon heading
+   (for example animated dots) keep the same clipped gradient
+   even if an animation temporarily sets `color`. */
+.coming-soon, .coming-soon * {
+    background: linear-gradient(90deg, #7B2CFF 0%, #5A4BFF 50%, #3478FF 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+.coming-soon-wrapper {
+    text-align: center;
+    position: relative;
+}
+
+.coming-soon-wrapper::after {
+    /* Elegant black separator line beneath the Coming Soon title (doubled width) */
+    content: "";
+    display: block;
+    width: 72%;
+    height: 3px;
+    background: #111;
+    margin: 0.9rem auto 0;
+    border-radius: 2px;
+    opacity: 0.95;
+}
+
+@media (max-width: 768px) {
+    /* Mobile: cap at full width for readability */
+    .coming-soon-wrapper::after { width: 100%; height: 2px; }
+}
+
+/* Center media inside the SECRET section */
+.secret-section .project-video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.centered-media { margin: 0 auto; }
+
+.coming-soon::after {
+    /* Blurred gradient layer to produce smooth color spread across full range */
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    left: 0;
+    z-index: -1;
+    pointer-events: none;
+    /* Slightly different gradient distribution and enlarged background for smooth blur */
+    background: linear-gradient(90deg, #7B2CFF 0%, #5A4BFF 45%, #3478FF 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    filter: blur(6px);
+    opacity: 0.9;
+    transform: translateY(1px);
+}
+
+/* Add wave animation to the dots in "Coming Soon..." */
+.coming-soon .dot {
+    position: relative;
+    display: inline-block;
+    animation: wave 1.5s infinite;
+}
+
+.coming-soon .dot:nth-of-type(2) {
+    animation-delay: 0.2s;
+}
+
+.coming-soon .dot:nth-of-type(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes wave {
+    0%, 100% {
+        top: 0;
+    }
+    50% {
+        top: -8px;
+    }
+}
+
+.banner-content h1 {
+    color: white;
+    font-family: 'Pacifico', cursive;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.banner-content h1 .banner-name,
+.banner-content h1 .banner-projects {
+    display: inline;
+}
+
+.banner-content h1 .banner-sep {
+    display: inline;
+}
+
+.content {
+    /* Main content container with page padding */
+    background-color: white;
+    padding: 4rem 2rem;
+}
+
+.presentation {
+    /* Presentation row: CV summary and profile (flex; stacks on narrow screens) */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    margin-bottom: var(--section-gap);
+}
+
+/* Thesis image centered between CV and projects */
+.thesis-figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2.5rem 0;
+}
+
+.thesis-figure img {
+    max-width: 900px;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+}
+
+@media (max-width: 768px) {
+    .thesis-figure { margin: 1.5rem 0; }
+    .thesis-figure img { max-width: 100%; border-radius: 8px; }
+}
+
+/* Light-gray horizontal band for the thesis image */
+.thesis-section {
+    /* Thesis band: visually separates the poster from other content */
+    background: #f5f6f7;
+    padding: 2.5rem 0;
+    margin: var(--section-gap) 0;
+}
+
+.thesis-card {
+    width: min(900px, 92%);
+    position: relative;
+}
+
+.thesis-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    transform: none;
+    transition: box-shadow 300ms ease;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.thesis-card:hover img {
+    transform: none;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.14);
+}
+
+@media (max-width: 768px) {
+    .thesis-card img { transform: none; box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+}
+
+.cv-summary {
+    flex: 2;
+    max-width: 600px;
+    order: 2;
+}
+
+.cv-summary h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-family: 'Helvetica Neue', sans-serif;
+    color: #333;
+}
+
+.cv-summary p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+.cv-summary em {
+    font-style: italic;
+    color: #000;
+}
+
+.profile {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    min-width: 300px;
+    order: 1;
+}
+
+.profile-pic {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-links a {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.social-links a:hover {
+    transform: scale(1.1);
+}
+
+.social-links img {
+    width: 40px;
+    height: auto;
+}
+.social-links .linkedin-logo img { width: 50px; }
+
+/* Reuse for play button */
+.youtube-link img { width: 100px; }
+
+
+
+.youtube-link img {
+    width: 100px;
+    transition: transform 0.3s ease;
+}
+
+.youtube-link:hover img {
+    transform: scale(1.1);
+}
+
+.project-section {
+    /* Project section: pairs a description block with a media block; order is swapped via `.media-left` / `.media-right` */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: var(--section-gap) auto;
+    flex-wrap: wrap;
+}
+
+.project-description {
+    flex: 2;
+    max-width: 600px;
+}
+
+.project-video-container {
+    /* Media container: visual area for images/videos; includes glassmorphism styling */
+    flex: 1;
+    min-width: 300px;
+    position: relative;
+    padding: 20px;
+    
+    /* Glassmorphism */
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Ambiens video placeholder */
+.amb-video {
+    width: 100%;
+    max-width: 520px;
+    height: auto;
+    max-height: 420px;
+    margin: 0 auto;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #000;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .amb-video { max-width: 360px; max-height: 320px; }
+}
+
+@media (max-width: 420px) {
+    .amb-video { max-width: 280px; max-height: 220px; }
+}
+
+.project-video-container video {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* Route39 slider styles */
+.slider-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.route39-img {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+/* Style the range input simply */
+.slider-container input[type="range"] {
+    width: 80%;
+    -webkit-appearance: none;
+    height: 6px;
+    background: #ddd;
+    border-radius: 6px;
+    outline: none;
+}
+.slider-container input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #111;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* Reduce Route39 media size and set container sizing */
+.route39 .project-video-container {
+    flex: 0.9;
+    min-width: 220px;
+    max-width: 480px;
+    padding: 12px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.09);
+}
+.route39-img { max-width: 480px; width: 100%; height: auto; border-radius: 8px; cursor: pointer; display: block; margin: 0 auto; }
+
+@media (max-width: 768px) {
+    /* Reduce the Route39 slider box size by 30% on mobile */
+    .route39 .project-video-container { width: 70%; max-width: 70%; min-width: auto; margin: 0 auto; }
+    .route39-img { max-width: 100%; }
+}
+
+/* Further reduce Route39 thumbnail on small mobile devices */
+@media (max-width: 420px) {
+    /* Use the same visual framing as desktop for Route39 on narrow screens
+       but keep the media area square (like desktop's snug thumbnail). */
+    .route39 .project-video-container {
+        box-sizing: border-box;
+        /* 300px reduced by 30% = 210px */
+        width: 210px;
+        height: 210px;
+        max-width: 210px;
+        max-height: 210px;
+        margin: 0.5rem auto;
+        padding: 8px;
+        border-radius: 10px;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(0,0,0,0.06);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .route39-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 6px;
+        display: block;
+    }
+}
+
+/* Modal / Lightbox for Route39 */
+.modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2200;
+}
+.modal.open { display: flex; }
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+}
+.modal-content {
+    position: relative;
+    z-index: 2201;
+    max-width: 92vw;
+    max-height: 86vh;
+    background: #fff;
+    border-radius: 10px;
+    padding: 1rem 1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+}
+.modal-content img { max-width: 100%; max-height: 72vh; object-fit: contain; border-radius: 6px; }
+.modal-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: transparent;
+    border: none;
+    font-size: 1.6rem;
+    color: #222;
+    cursor: pointer;
+}
+.modal input[type="range"] { width: 70%; }
+
+@media (max-width: 420px) {
+    .modal-content { padding: 0.5rem; }
+    .modal input[type="range"] { width: 90%; }
+}
+
+.project-thumb { width: 100%; border-radius: 10px; display: block; }
+
+/* Make media for dontREADME.md half the normal size */
+.dontreadme .project-thumb {
+    width: 40%;
+    max-width: 240px; /* cap to keep image compact */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Specific sizing for Mandelbrot Cabbage media */
+.mandelbrot .project-video-container {
+    width: 260px;
+    min-width: 0;
+    max-width: 320px;
+    height: 260px;
+    max-height: 320px;
+    margin: 0 auto;
+    padding: 8px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.07);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mandelbrot .project-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+@media (max-width: 420px) {
+    .mandelbrot .project-video-container {
+        width: 220px;
+        max-width: 220px;
+        height: 220px;
+        max-height: 220px;
+    }
+}
+
+/* Slightly larger portrait layout for Mandelbrot Cabbage on desktop */
+@media (min-width: 769px) {
+    .mandelbrot .project-video-container {
+        width: 320px;
+        max-width: 320px;
+        height: 420px;
+        max-height: 420px;
+        padding: 14px;
+    }
+    .mandelbrot .project-thumb {
+        border-radius: 6px;
+    }
+}
+
+/* Placeholder media styling (black rectangle with three question marks) */
+.placeholder-media {
+    width: 100%;
+    height: 220px;
+    max-width: 520px;
+    background: #000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+.placeholder-media .marks { display:flex; gap:0.6rem; align-items:baseline; }
+.placeholder-media .marks span { font-size:1.4rem; opacity:0.95; }
+.placeholder-media .marks .center { font-size:2.8rem; font-weight:700; }
+
+@media (max-width: 768px) {
+    .placeholder-media { height: 180px; max-width: 360px; }
+    .placeholder-media .marks span { font-size:1.2rem; }
+    .placeholder-media .marks .center { font-size:2rem; }
+}
+
+.youtube-link { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+
+.youtube-link img { transition: transform 0.3s ease; }
+
+.youtube-link:hover img { transform: scale(1.1); }
+
+.media-left .project-video-container {
+    order: 1;
+}
+
+.media-left .project-description {
+    order: 2;
+}
+
+/* media-right: invert order so description left, media right */
+.media-right .project-video-container { order: 2; }
+.media-right .project-description { order: 1; }
+
+/* Decorative horizontal line beside media (desktop only) */
+.project-video-container::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 4px;
+    width: 180px;
+    background: #111;
+    border-radius: 2px;
+    pointer-events: none;
+}
+
+.media-right .project-video-container::after { right: -200px; left: auto; }
+.media-left .project-video-container::after { left: -200px; right: auto; }
+
+@media (max-width: 1024px) {
+    .project-video-container::after { display: none; }
+}
+
+/* Small black circle centered on the decorative line */
+.project-video-container::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 14px;
+    background: #111;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    pointer-events: none;
+}
+
+.media-right .project-video-container::before { right: calc(-200px + 90px); left: auto; }
+.media-left .project-video-container::before { left: calc(-200px + 90px); right: auto; }
+
+@media (max-width: 1024px) {
+    .project-video-container::before { display: none; }
+}
+
+/* Entrance animations: slide in from left/right */
+@keyframes slideInFromLeft {
+    from { transform: translateX(-30px); opacity: 0; }
+    to   { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInFromRight {
+    from { transform: translateX(30px); opacity: 0; }
+    to   { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInFromBottom {
+    from { transform: translateY(20px); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+}
+
+/* Animations: used by IntersectionObserver to add subtle entrance effects; disabled when user prefers reduced motion */
+
+.animate-left, .animate-right {
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
+.animate-left.in-view {
+    animation: slideInFromLeft 900ms cubic-bezier(.2,.8,.2,1) both;
+}
+
+.animate-right.in-view {
+    animation: slideInFromRight 900ms cubic-bezier(.2,.8,.2,1) both;
+}
+
+/* Respect user preference */
+@media (prefers-reduced-motion: reduce) {
+    .animate-left.in-view,
+    .animate-right.in-view {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* WIP Banner */
+.wip-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+}
+
+.wip-banner p {
+    margin: 0;
+    padding-right: 20px;
+    font-size: 0.9rem;
+}
+
+.close-btn {
+    font-size: 1.2rem;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    color: inherit;
+    padding: 6px 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .banner-content h1 {
+        font-size: 3rem;
+    }
+
+    /* Mobile: stack name above Projects, hide separator */
+    .banner-content h1 {
+        display: flex;
+        flex-direction: column;
+        gap: 0.15rem;
+        align-items: center;
+        line-height: 1.05;
+    }
+
+    .banner-content h1 .banner-sep {
+        display: block;
+        font-size: 1.2rem;
+        opacity: 0.95;
+        margin: 0.05rem 0;
+        color: inherit;
+        line-height: 1;
+    }
+
+    .content {
+        padding: 2rem 1rem;
+    }
+
+    .presentation {
+        flex-direction: column;
+    }
+
+    .cv-summary {
+        order: 2;
+        max-width: 100%;
+    }
+
+    .profile {
+        order: 1;
+    }
+
+    .profile-pic {
+        width: 200px;
+        height: 200px;
+    }
+
+    .cv-summary h2 {
+        font-size: 2rem;
+    }
+
+
+
+    .project-section {
+        flex-direction: column;
+    }
+    .thesis-section { margin-top: 1.5rem; }
+
+    /* Mobile: slide in from bottom and stack description before media */
+    .animate-left.in-view,
+    .animate-right.in-view {
+        animation: slideInFromBottom 900ms cubic-bezier(.2,.8,.2,1) both;
+    }
+
+    .project-section .project-description { order: 1; }
+    .project-section .project-video-container { order: 2; }
+
+    /* Hide decorative lines and dot on small screens */
+    .project-video-container::after,
+    .project-video-container::before { display: none !important; }
+}
+
+.site-footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    background-color: #f5f6f7;
+    color: #555;
+    font-size: 0.9rem;
+    margin-top: var(--section-gap);
+}
+
+.glitch {
+    position: relative;
+    color: white;
+    text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75), -0.025em -0.05em 0 rgba(0, 255, 0, 0.75), 0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+    animation: glitch 500ms infinite;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f5f6f7;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+}
+
+.glitch::before {
+    left: -0.05em;
+    text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75);
+    animation: glitch-before 2s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: 0.05em;
+    text-shadow: -0.05em 0 0 rgba(0, 0, 255, 0.75);
+    animation: glitch-after 1s infinite linear alternate-reverse;
+}
+
+@keyframes glitch {
+    0% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-0.05em, 0.05em);
+    }
+    40% {
+        transform: translate(-0.05em, -0.05em);
+    }
+    60% {
+        transform: translate(0.05em, 0.05em);
+    }
+    80% {
+        transform: translate(0.05em, -0.05em);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+@keyframes glitch-before {
+    0% {
+        clip: rect(42px, 9999px, 44px, 0);
+    }
+    10% {
+        clip: rect(37px, 9999px, 94px, 0);
+    }
+    20% {
+        clip: rect(50px, 9999px, 62px, 0);
+    }
+    30% {
+        clip: rect(30px, 9999px, 65px, 0);
+    }
+    40% {
+        clip: rect(55px, 9999px, 90px, 0);
+    }
+    50% {
+        clip: rect(10px, 9999px, 95px, 0);
+    }
+    60% {
+        clip: rect(70px, 9999px, 80px, 0);
+    }
+    70% {
+        clip: rect(80px, 9999px, 75px, 0);
+    }
+    80% {
+        clip: rect(50px, 9999px, 60px, 0);
+    }
+    90% {
+        clip: rect(20px, 9999px, 70px, 0);
+    }
+    100% {
+        clip: rect(42px, 9999px, 44px, 0);
+    }
+}
+
+@keyframes glitch-after {
+    0% {
+        clip: rect(90px, 9999px, 95px, 0);
+    }
+    10% {
+        clip: rect(30px, 9999px, 60px, 0);
+    }
+    20% {
+        clip: rect(10px, 9999px, 5px, 0);
+    }
+    30% {
+        clip: rect(40px, 9999px, 50px, 0);
+    }
+    40% {
+        clip: rect(85px, 9999px, 95px, 0);
+    }
+    50% {
+        clip: rect(45px, 9999px, 55px, 0);
+    }
+    60% {
+        clip: rect(75px, 9999px, 85px, 0);
+    }
+    70% {
+        clip: rect(25px, 9999px, 45px, 0);
+    }
+    80% {
+        clip: rect(65px, 9999px, 75px, 0);
+    }
+    90% {
+        clip: rect(5px, 9999px, 15px, 0);
+    }
+    100% {
+        clip: rect(90px, 9999px, 95px, 0);
+    }
+}
+
+.secret-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 0 2rem; /* Add some padding */
+}
+
+.secret-group-left, .secret-group-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.secret-group-left {
+    flex-direction: column;
+}
+
+.secret-group-right {
+    flex-direction: row;
+}
+
+.secret-project-group, .card-demo-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.secret-section .project-video-container::before,
+.secret-section .project-video-container::after {
+    display: none;
+}
+
+.card-demo-text, .secret-project-text {
+    font-family: 'Pacifico', cursive;
+    font-size: 2rem;
+    color: #333;
+    text-align: center;
+}
+
+/* Smaller, normal-font note under the Card Demo title */
+.card-demo-sub {
+    display: block;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    font-style: normal;
+    color: #333;
+    margin-top: 0.25rem;
+}
+
+.card-arrow, .secret-arrow {
+    width: 80px;
+}
+
+.secret-arrow {
+    transform: rotate(180deg);
+}
+
+@media (max-width: 1024px) {
+    .secret-section {
+        flex-direction: column;
+    }
+    .secret-group-right {
+        flex-direction: column-reverse; /* Stack card text/arrow below card */
+    }
+}
+
+@media (max-width: 768px) {
+    /* Keep the SECRET area identical to the desktop layout on mobile.
+       Preserve grouping, order and arrow rotations for the four elements
+       (secret placeholder, secret text+arrow, card-demo box, card text+arrow). */
+    .secret-group-left, .secret-group-right, .secret-project-group, .card-demo-group {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    /* Preserve desktop arrow rotations on mobile */
+    .secret-arrow {
+        transform: rotate(180deg) !important;
+    }
+
+    .card-arrow {
+        transform: none !important;
+    }
+
+    /* Prevent reordering on narrow viewports */
+    .card-demo-text, .card-arrow, .card-demo-wrapper, .secret-placeholder, .secret-arrow, .secret-project-text {
+        order: initial !important;
+    }
+
+    .secret-section {
+        gap: 2rem;
+        flex-direction: row !important;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* Desktop: shift the entire SECRET section a bit to the right while keeping relative positions */
+@media (min-width: 1025px) {
+    .secret-section {
+        transform: translateX(73px);
+    }
+    /* Shift Secret Project text and arrow slightly left while preserving rotation */
+    .secret-project-text {
+        transform: translateX(-75px);
+    }
+    .secret-arrow {
+        transform: rotate(180deg) translateX(70px);
+    }
+}
