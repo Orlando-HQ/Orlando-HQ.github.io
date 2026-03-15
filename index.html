@@ -16,7 +16,7 @@
         <p>This site is primarily designed for desktop. Try it on your PC!</p>
         <button class="close-btn" aria-label="Close banner">&times;</button>
     </div>
-    <!-- Header banner: background video (muted loop), dark overlay, and main title -->
+    <!-- Header banner -->
     <header class="banner">
         <video muted loop playsinline preload="auto" id="background-video">
             <source src="Media/Videos/Animated_Background.webm" type="video/webm">
@@ -27,7 +27,7 @@
         </div>
     </header>
     <main class="content">
-        <!-- Presentation: CV summary and profile (flex layout; profile stacks above CV on mobile) -->
+        <!-- Presentation -->
         <section class="presentation">
             <div class="cv-summary">
                 <h2>CV Summary</h2>
@@ -48,7 +48,7 @@
             </div>
         </section>
         
-        <!-- Thesis section: poster image displayed in a light-gray band -->
+        <!-- Thesis section -->
         <section class="thesis-section">
             <div class="thesis-figure">
                 <div class="thesis-card">
@@ -58,7 +58,7 @@
         </section>
 
         
-        <!-- Project example: TEDx entry. Project sections use `media-left` / `media-right` to control media/description order on desktop. -->
+        <!-- Project -->
         <section class="project-section media-right">
             <div class="project-description cv-summary animate-left">
                 <h2>TEDx | BackToZero</h2>
@@ -88,7 +88,7 @@
                 </video>
             </div>
         </section>
-        <!-- Route39 project: shows a thumbnail with a slider to switch images; clicking opens lightbox modal -->
+        <!-- Route39 -->
         <section class="project-section route39 media-right">
             <div class="project-description cv-summary">
                 <h2>Route39 | Rome</h2>
@@ -103,7 +103,7 @@
                 </div>
             </div>
         </section>
-        <!-- Ambiens VR: video project section (media left on desktop) -->
+        <!-- Ambiens VR -->
         <section class="project-section ambiens media-left">
             <div class="project-description cv-summary animate-right">
                 <h2>Ambiens VR | DD.Share</h2>
@@ -118,7 +118,7 @@
                 </video>
             </div>
         </section>
-        <!-- Mandelbrot Cabbage: small media thumbnail used as project visual -->
+        <!-- Mandelbrot Cabbage -->
         <section class="project-section media-right mandelbrot">
             <div class="project-description cv-summary">
                 <h2>Mandelbrot Cabbage</h2>
@@ -130,7 +130,7 @@
                 <img src="Media/FractalCabbage.jpg" alt="Mandelbrot Cabbage" class="project-thumb" loading="lazy">
             </div>
         </section>
-        <!-- Placeholder projects: follow same structure as other projects (description + media). Placeholders use a black rectangle with three question marks. -->
+        <!-- Placeholder -->
         <section class="project-section media-left placeholder">
             <div class="project-description cv-summary">
                 <h2>SimNet</h2>
@@ -167,7 +167,7 @@
             </div>
         </section>
 
-        <!-- Divider: upcoming / work-in-progress projects -->
+        <!-- Divider -->
         <div class="coming-soon-wrapper">
             <h2 class="coming-soon" data-text="Coming Soon...">Coming Soon<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></h2>
         </div>
@@ -194,9 +194,7 @@
             </div>
         </section>
 
-        <!-- CineBrain | fMRI removed per request -->
-
-        <!-- Divider: SECRET section -->
+        <!-- SECRET section -->
         <div class="coming-soon-wrapper">
             <h2 class="coming-soon glitch" data-text="SECRET">SECRET</h2>
         </div>
@@ -336,7 +334,7 @@
         
     </script>
     <script src="CardDemo/card-demo.js" defer></script>
-        <!-- Route39 modal (lightbox): hidden by default, opened by clicking Route39 thumbnail -->
+        <!-- Route39 modal (lightbox) -->
         <div id="route39-modal" class="modal" aria-hidden="true">
             <div class="modal-backdrop"></div>
             <div class="modal-content" role="dialog" aria-modal="true" aria-label="Route 39 images">
