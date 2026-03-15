@@ -687,7 +687,6 @@ img, picture, video, svg {
     animation: slideInFromRight 900ms cubic-bezier(.2,.8,.2,1) both;
 }
 
-/* Respect user preference */
 @media (prefers-reduced-motion: reduce) {
     .animate-left.in-view,
     .animate-right.in-view {
