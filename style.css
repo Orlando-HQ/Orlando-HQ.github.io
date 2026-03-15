@@ -527,15 +527,6 @@ img, picture, video, svg {
 
 .project-thumb { width: 100%; border-radius: 10px; display: block; }
 
-/* Make media for dontREADME.md half the normal size */
-.dontreadme .project-thumb {
-    width: 40%;
-    max-width: 240px; /* cap to keep image compact */
-    height: auto;
-    display: block;
-    margin: 0 auto;
-}
-
 /* Specific sizing for Mandelbrot Cabbage media */
 .mandelbrot .project-video-container {
     width: 260px;
