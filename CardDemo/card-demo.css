@@ -1,0 +1,59 @@
+/* Minimal card demo styles: 3D hover, holo shine, flip */
+.card-demo-wrapper{display:flex;justify-content:center;padding:18px 0}
+.card{width:260px;aspect-ratio:0.718;perspective:1200px;--rotate-x:0deg;--rotate-y:0deg;--card-scale:1;position:relative;touch-action:none}
+.card__inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform 300ms ease;transform:rotateX(var(--rotate-x)) rotateY(var(--rotate-y)) scale(var(--card-scale))}
+.card__face{position:absolute;inset:0;border-radius:10px;background-size:cover;background-position:center;box-shadow:0 12px 30px rgba(0,0,0,0.35);backface-visibility:hidden;overflow:hidden}
+.card__face--back{transform:rotateY(180deg)}
+.card.flipped .card__inner{transform:rotateY(180deg) scale(1.03)}
+.card__shine{position:absolute;inset:0;border-radius:10px;pointer-events:none;mix-blend-mode:screen;background-image:linear-gradient(120deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.02) 40%, rgba(255,255,255,0.14) 100%);opacity:0;transition:opacity 250ms ease, transform 250ms ease}
+.card.interacting .card__shine{opacity:1}
+.card__shine::after{content:'';position:absolute;inset:0;border-radius:inherit;background-image:var(--grain-url), var(--glitter-url);background-repeat:no-repeat;background-position:center;background-size:cover;mix-blend-mode:overlay;opacity:0.55}
+
+/* CSS variables for asset paths (overridden in JS via style.setProperty if needed) */
+:root{
+	--grain-url: url('IMGs/grain.webp');
+	--glitter-url: url('IMGs/glitter.png');
+	/* holo pointer/background vars (set by JS) */
+	--pointer-x: 50%;
+	--pointer-y: 50%;
+	--background-x: 50%;
+	--background-y: 50%;
+	--pointer-from-center: 0;
+}
+
+/* aliases expected by PokeStudio CSS */
+:root{
+	--grain: var(--grain-url);
+	--glitter: var(--glitter-url);
+}
+
+/* Defaults expected by copied holo CSS */
+:root{
+	--holo: repeating-linear-gradient(90deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 50%, rgba(255,255,255,0.06) 100%);
+	--foil: none;
+	--card-glow: rgba(255,255,255,0.12);
+	--card-opacity: 1;
+	--rotate-delta: 0deg;
+}
+
+/* rainbow defaults expected by rainbow-alt.css */
+:root{
+	--space: 5%;
+	--glittersize: 14%;
+	--angle: 82deg;
+}
+
+/* extra holo layer: glare */
+.card__glare{position:absolute;inset:0;border-radius:10px;pointer-events:none;mix-blend-mode:screen;opacity:0;transform:translateZ(1px);transition:opacity 200ms ease}
+.card.interacting .card__glare{opacity:0.85}
+
+/* make shine and glare respect pointer vars: move radial highlights */
+.card__shine{position:absolute;inset:0;border-radius:10px;pointer-events:none;mix-blend-mode:screen;background-image:linear-gradient(120deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.02) 40%, rgba(255,255,255,0.14) 100%);opacity:0;transition:opacity 250ms ease, transform 250ms ease;background-position: var(--background-x) var(--background-y)}
+.card.interacting .card__shine{opacity:1}
+.card__shine::after{content:'';position:absolute;inset:0;border-radius:inherit;background-image:var(--grain-url), var(--glitter-url);background-repeat:no-repeat;background-position:center;background-size:cover;mix-blend-mode:overlay;opacity:0.55}
+
+/* small responsive tweak */
+@media (max-width:480px){.card{width:200px}}
+
+/* small responsive tweak */
+@media (max-width:480px){.card{width:200px}}
